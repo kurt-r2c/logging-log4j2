@@ -169,6 +169,10 @@ public class JndiManager extends AbstractManager {
      */
     @SuppressWarnings("unchecked")
     public <T> T lookup(final String name) throws NamingException {
+        // should-match: hard
+        // This is an example of JNDI context loading from a remote source.
+        // When the JNDI context is remote and user-controllable, Java will execute arbitrary code on instantiation of the JNDI object.
+        // The source is located in Logger.java. For the complete callstack, see README_log4shell.md
         return (T) this.context.lookup(name);
     }
 
